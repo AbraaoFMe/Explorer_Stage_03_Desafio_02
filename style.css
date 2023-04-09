@@ -1,0 +1,148 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --bg-primary: hsla(233, 100%, 97%, 1);
+    --bg-secondary: hsla(312, 91%, 96%, 1);
+    --bg-heading: hsla(275, 18%, 79%, 1);
+    --bg-heading-dark: hsla(218, 17%, 62%, 1);
+
+    --fc-primary: hsla(274, 84%, 12%, 1);
+    --fc-heading-dark: hsla(232, 17%, 35%, 1);
+    --fc-heading-light: hsla(0, 0%, 100%, 1);
+
+    font-size: 62.5%;
+    --ff-primary: 'Palanquin', sans-serif;
+    --ff-heading: 'Staatliches', cursive;
+}
+
+body {
+    background: var(--bg-primary);
+    font-size: 1.6rem;
+    font-family: var(--ff-primary);
+    color: var(--fc-primary);
+    text-align: center;
+
+}
+
+header {
+    background: var(--bg-heading-dark);
+    font-family: var(--ff-heading);
+    padding-bottom: 3rem;
+}
+
+header img {
+    margin: 3.2rem auto;
+}
+
+header h1 {
+    background: var(--bg-heading);
+    color: var(--fc-heading-light);
+
+    font-size: 4rem;
+    font-weight: 400;
+    line-height: 3.4rem;
+    letter-spacing: 0.05em;
+
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+
+    padding: 0.8rem;
+}
+
+main {
+    margin: 1.4rem auto 0;
+    padding: 0.8rem;
+
+    max-width: 450px;
+}
+
+main p {
+    font-size: 2rem;
+    line-height: 1.5rem;
+    margin-bottom: 6.3rem;
+    font-weight: 400;
+}
+
+.cards-wrapper {
+    display: grid;
+    gap: 3.2rem;
+}
+
+.card {
+    position: relative;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 20px;
+
+    animation: downtop 200ms;
+}
+
+.card h2 {
+    font-family: var(--ff-heading);
+    background: var(--bg-secondary);
+    color: var(--fc-heading-dark);
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 3.4rem;
+    letter-spacing: 0.2em;
+
+    display: inline-flex;
+    align-self: center;
+
+    height: 3.5rem;
+    padding: 0 2.3rem;
+
+    border-radius: 2rem;
+
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+
+    animation: topdown 200ms;
+}
+
+@keyframes topdown {
+    0%{
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes downtop {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 760px) {
+
+    main {
+        max-width: 1000px;
+        padding: 0 2rem;
+    }
+
+    .cards-wrapper {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card img {
+        height: 40rem;
+        object-fit: cover;
+    }
+}
