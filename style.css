@@ -17,6 +17,9 @@
     font-size: 62.5%;
     --ff-primary: 'Palanquin', sans-serif;
     --ff-heading: 'Staatliches', cursive;
+
+    --central-content-width: 45rem;
+    --central-content-padding: 0 0.8rem;
 }
 
 body {
@@ -52,21 +55,23 @@ header h1 {
     padding: 0.8rem;
 }
 
-main {
-    margin: 1.4rem auto 0;
-    padding: 0.8rem;
-
-    max-width: 450px;
+aside {
+    margin: 1.4rem auto 6.3rem;
+    max-width: var(--central-content-width);
+    padding: var(--central-content-padding);
 }
 
-main p {
+aside p {
     font-size: 2rem;
     line-height: 1.5rem;
-    margin-bottom: 6.3rem;
     font-weight: 400;
 }
 
-.cards-wrapper {
+main {
+    margin: 0 auto;
+    max-width: var(--central-content-width);
+    padding: var(--central-content-padding);
+    
     display: grid;
     gap: 3.2rem;
 }
@@ -106,8 +111,12 @@ main p {
     animation: topdown 200ms;
 }
 
+footer {
+    display: none;
+}
+
 @keyframes topdown {
-    0%{
+    0% {
         opacity: 0;
         transform: translateY(-15px);
     }
@@ -130,19 +139,112 @@ main p {
     }
 }
 
-@media (min-width: 760px) {
-
-    main {
-        max-width: 1000px;
-        padding: 0 2rem;
+@media (min-width: 768px) {
+    :root {
+        --central-content-width: 71.2rem;
+        --central-content-padding: 0 2rem;
     }
 
-    .cards-wrapper {
+    main {
+        display: grid;
         grid-template-columns: 1fr 1fr;
     }
 
     .card img {
-        height: 40rem;
+        height: 25rem;
         object-fit: cover;
+    }
+
+}
+
+@media (min-width: 1024px) {
+    .page {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    .top-content-wrapper {
+        flex-grow: 1;
+        flex-basis: 37.7rem;
+        background: var(--bg-heading-dark);
+    }
+
+    header {
+        padding-bottom: 3.2rem;
+    }
+    
+    header h1 {
+        font-size: 4.8rem;
+        padding: 2rem;
+    }
+    
+    aside p {
+        font-weight: 400;
+        font-size: 2.4rem;
+        line-height: 2rem;
+        color: var(--fc-heading-light);
+        
+        max-width: 27.5rem  ;
+        margin: 0 auto;
+    }
+
+    .main-content-wrapper {
+        flex-grow: 3;
+        flex-basis: 90.3rem;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        gap: 5rem;
+
+
+        padding: 4.6rem;
+    }
+
+    main {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: 
+            "A B C"
+            "D B F"
+            "D E F";
+
+        max-width: 90.3rem
+    }
+
+    main .card:nth-child(1) {
+        grid-area: A;
+    }
+
+    main .card:nth-child(2) {
+        grid-area: B;
+    }
+
+    main .card:nth-child(3) {
+        grid-area: C;
+    }
+
+    main .card:nth-child(4) {
+        grid-area: D;
+    }
+
+    main .card:nth-child(5) {
+        grid-area: E;
+    }
+
+    main .card:nth-child(6) {
+        grid-area: F;
+    }
+
+    .card img {
+        height: max-content;
+        object-fit: fill;
+    }
+
+    .card h2 {
+        display: none;
+    }
+
+    footer {
+        display: block;
     }
 }
