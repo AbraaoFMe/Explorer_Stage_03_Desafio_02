@@ -17,8 +17,9 @@
     font-size: 62.5%;
     --ff-primary: 'Palanquin', sans-serif;
     --ff-heading: 'Staatliches', cursive;
+    --ff-secondary: 'Roboto', sans-serif;
+    --ff-terciary: 'Open Sans', sans-serif;
 
-    --central-content-width: 45rem;
     --central-content-padding: 0 0.8rem;
 }
 
@@ -33,8 +34,6 @@ body {
 
 header {
     background: var(--bg-heading-dark);
-    font-family: var(--ff-heading);
-    padding-bottom: 3rem;
 }
 
 header img {
@@ -45,6 +44,7 @@ header h1 {
     background: var(--bg-heading);
     color: var(--fc-heading-light);
 
+    font-family: var(--ff-heading);
     font-size: 4rem;
     font-weight: 400;
     line-height: 3.4rem;
@@ -55,13 +55,16 @@ header h1 {
     padding: 0.8rem;
 }
 
-aside {
-    margin: 1.4rem auto 6.3rem;
-    max-width: var(--central-content-width);
-    padding: var(--central-content-padding);
+.paragraph-container {
+    background: var(--bg-primary);
+    padding: 1.4rem 0 6.3rem;
 }
 
-aside p {
+.paragraph-container p {
+    margin: 0 auto;
+    padding: var(--central-content-padding);
+    max-width: 60rem;
+
     font-size: 2rem;
     line-height: 1.5rem;
     font-weight: 400;
@@ -69,15 +72,15 @@ aside p {
 
 main {
     margin: 0 auto;
-    max-width: var(--central-content-width);
     padding: var(--central-content-padding);
-    
+
     display: grid;
     gap: 3.2rem;
 }
 
 .card {
     position: relative;
+    transition: transform 700ms;
 }
 
 .card img {
@@ -85,6 +88,7 @@ main {
     border-radius: 20px;
 
     animation: downtop 200ms;
+
 }
 
 .card h2 {
@@ -109,6 +113,11 @@ main {
     right: 1.6rem;
 
     animation: topdown 200ms;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    filter: brightness(.5);
 }
 
 footer {
@@ -139,76 +148,68 @@ footer {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 610px) {
     :root {
-        --central-content-width: 71.2rem;
         --central-content-padding: 0 2rem;
     }
 
     main {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
     }
 
-    .card img {
-        height: 25rem;
+    main .card {
+        flex-basis: 28rem;
+        max-height: 28rem;
+        flex-grow: 1;
+    }
+
+    main .card img {
+        height: 100%;
         object-fit: cover;
     }
-
 }
 
-@media (min-width: 1024px) {
-    .page {
-        display: flex;
-        min-height: 100vh;
-    }
-
-    .top-content-wrapper {
-        flex-grow: 1;
-        flex-basis: 37.7rem;
-        background: var(--bg-heading-dark);
+@media (min-width: 1100px) {
+    body {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
     }
 
     header {
-        padding-bottom: 3.2rem;
+        min-height: 100vh;
+        min-width: 30rem;
     }
-    
+
     header h1 {
         font-size: 4.8rem;
         padding: 2rem;
     }
-    
-    aside p {
-        font-weight: 400;
-        font-size: 2.4rem;
-        line-height: 2rem;
-        color: var(--fc-heading-light);
-        
-        max-width: 27.5rem  ;
-        margin: 0 auto;
+
+    .paragraph-container {
+        background: var(--bg-heading-dark);
+        padding-top: 3.2rem;
     }
 
-    .main-content-wrapper {
-        flex-grow: 3;
-        flex-basis: 90.3rem;
+    .paragraph-container p {
+        color: var(--fc-heading-light);
+        font-family: var(--ff-secondary);
+        font-size: 2.4rem;
+        line-height: 3rem;
+    }
 
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        gap: 5rem;
-
-
-        padding: 4.6rem;
+    .content-wrapper {
+        padding: 8% 5%;
     }
 
     main {
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-areas: 
-            "A B C"
-            "D B F"
-            "D E F";
-
-        max-width: 90.3rem
+        display: grid;
+        grid-template-areas:
+            "A B"
+            "D B"
+            "D C"
+            "E F";
     }
 
     main .card:nth-child(1) {
@@ -235,16 +236,45 @@ footer {
         grid-area: F;
     }
 
+    main .card {
+        max-height: max-content;
+    }
+
     .card img {
         height: max-content;
         object-fit: fill;
     }
 
-    .card h2 {
-        display: none;
-    }
-
     footer {
         display: block;
+        margin-top: 5rem;
     }
+}
+
+@media (min-width: 1400px) {
+    body {
+        display: grid;
+        grid-template-columns: 2fr 5fr;
+    }
+
+    .content-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        
+        padding: 6.4rem 9rem 4rem;
+    }
+
+    main {
+        grid-template-areas: 
+            "A B C"
+            "D B F"
+            "D E F";
+        
+        gap: 3.2rem;
+
+        max-width: 90rem;
+    }
+
+
 }
